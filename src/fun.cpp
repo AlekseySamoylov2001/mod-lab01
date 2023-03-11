@@ -19,8 +19,7 @@ unsigned int faStr1(const char* str) {
 
 		if (str[itStr] != ' ') {
 			isSpace = false;
-		}
-		else {
+		} else {
 			if (!isSpace) {
 				++nbWords;
 				isSpace = true;
@@ -55,8 +54,7 @@ unsigned int faStr2(const char* str) {
 			if (str[itStr] < 'a' || str[itStr] > 'z') {
 				isIncorrect = true;
 			}
-		}
-		else {
+		} else {
 			if (!isSpace && !isIncorrect) {
 				++nbWords;
 				isSpace = true;
@@ -92,5 +90,5 @@ unsigned int faStr3(const char* str) {
 	if (nbWords > 0) {
 		lenght /= nbWords;
 	}
-	static_cast<int>(lenght + 0.5);
+	return static_cast<int>(lenght + 0.5);
 }
