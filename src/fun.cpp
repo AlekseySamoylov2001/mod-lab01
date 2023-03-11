@@ -2,39 +2,30 @@
 #include "fun.h"
 
 unsigned int faStr1(const char* str) {
+	bool isCorrect = true;
 	bool isSpace = true;
 	int nbWords = 0;
 
-	for (int itStr = 0; str[itStr] != '\0';) {
+	for (int itStr = 0; str[itStr] != '\0'; ++itStr) {
 		if (str[itStr] >= '0' && str[itStr] <= '9') {
-			while (str[itStr] != ' ') {
-				if (str[itStr] == '\0') {
-					break;
-				}
-				++itStr;
-			}
-
-			continue;
+			isCorrect = false;
 		}
-
 		if (str[itStr] != ' ') {
 			isSpace = false;
 		} else {
-			if (!isSpace) {
+			if (!isSpace && isCorrect) {
 				++nbWords;
-				isSpace = true;
 			}
+			isSpace = true;
+			isCorrect = true;
 		}
-
-		++itStr;
 	}
 
 	return nbWords;
 }
 
 unsigned int faStr2(const char* str) {
-	bool isSpace = true;
-	bool isIncorrect = true;
+	bool isIncorrect = false;
 	int nbWords = 0;
 
 	for (int itStr = 0; str[itStr] != '\0';) {
@@ -49,20 +40,22 @@ unsigned int faStr2(const char* str) {
 			continue;
 		}
 
-		if (str[itStr] != ' ') {
-			isSpace = false;
+		while (str[itStr] != ' ') {
+			if (str[itStr] == '\0') {
+				break;
+			}
 			if (str[itStr] < 'a' || str[itStr] > 'z') {
 				isIncorrect = true;
 			}
-		} else {
-			if (!isSpace && !isIncorrect) {
-				++nbWords;
-				isSpace = true;
-				isSpace = false;
-			}
+
+			++itStr;
 		}
 
-		++itStr;
+		if (!isIncorrect) {
+			++nbWords;
+		}
+
+		isIncorrect = false;
 	}
 
 	return nbWords;
