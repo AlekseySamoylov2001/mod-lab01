@@ -13,8 +13,8 @@ unsigned int faStr1(const char* str) {
         if (str[itStr] != ' ') {
             isSpace = false;
         } else {
-        	if (!isSpace && isCorrect) {
-            ++nbWords;
+            if (!isSpace && isCorrect) {
+                ++nbWords;
             }
             isSpace = true;
             isCorrect = true;
@@ -40,14 +40,17 @@ unsigned int faStr2(const char* str) {
 
             continue;
         }
+        ++itStr;
+        if (str[itStr] == '\0') {
+            break;
+        }
 
         if (str[itStr] != ' ') {
             isSpace = false;
             if (str[itStr] < 'a' || str[itStr] > 'z') {
                 isIncorrect = true;
             }
-        }
-        else {
+        } else {
             if (!isSpace && !isIncorrect) {
                 ++nbWords;
             }
@@ -64,7 +67,6 @@ unsigned int faStr2(const char* str) {
 unsigned int faStr3(const char* str) {
     int nbWords = 0;
     double lenght = 0;
-    
     for (int itStr = 0; str[itStr] != '\0';) {
         if (str[itStr] != ' ') {
             ++nbWords;
@@ -76,10 +78,8 @@ unsigned int faStr3(const char* str) {
                 ++itStr;
             }
         }
-        
         ++itStr;
     }
-    
     if (nbWords > 0) {
         lenght /= nbWords;
     }
