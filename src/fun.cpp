@@ -70,6 +70,27 @@ unsigned int faStr2(const char* str) {
 	return nbWords;
 }
 
-unsigned int faStr3(const char *str) {
-    return 0;
+unsigned int faStr3(const char* str) {
+	int nbWords = 0;
+	double lenght = 0;
+
+	for (int itStr = 0; str[itStr] != '\0';) {
+		if (str[itStr] != ' ') {
+			++nbWords;
+			while (str[itStr] != ' ') {
+				if (str[itStr] == '\0') {
+					break;
+				}
+				++lenght;
+				++itStr;
+			}
+		}
+
+		++itStr;
+	}
+
+	if (nbWords > 0) {
+		lenght /= nbWords;
+	}
+	static_cast<int>(lenght + 0.5);
 }
