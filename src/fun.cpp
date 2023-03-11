@@ -29,9 +29,9 @@ unsigned int faStr2(const char* str) {
     bool isIncorrect = false;
     int nbWords = 0;
 
-    for (int itStr = 0; str[itStr] != '\0'; ++itStr;) {
+    for (int itStr = 0; str[itStr] != '\0'; ++itStr) {
         if (isFirst) {
-            if (str[itStr] == ' '){
+            if (str[itStr] == ' ') {
                 continue;
             }
             if (str[itStr] < 'A' || str[itStr] > 'Z') {
