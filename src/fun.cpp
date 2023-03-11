@@ -25,46 +25,32 @@ unsigned int faStr1(const char* str) {
 }
 
 unsigned int faStr2(const char* str) {
-    bool isSpace = true;
-    bool isCorrectFirst = false;
+    bool isFirst = true;
     bool isIncorrect = false;
     int nbWords = 0;
 
-    for (int itStr = 0; str[itStr] != '\0';) {
-        if (!isCorrectFirst)
-        {
-            if (str[itStr] < 'A' || str[itStr] > 'Z') {
-                while (str[itStr] != ' ') {
-                    if (str[itStr] == '\0') {
-                        break;
-                    }
-                    ++itStr;
-                }
-            
+    for (int itStr = 0; str[itStr] != '\0'; ++itStr;) {
+        if (isFirst) {
+            if (str[itStr] == ' '){
                 continue;
-            } else {
-                isCorrectFirst = true;
             }
-        }
-
-        if (isCorrectFirst)
-        {
+            if (str[itStr] < 'A' || str[itStr] > 'Z') {
+                isIncorrect = true;
+            }
+            isFirst = false;
+        } else {
             if (str[itStr] != ' ') {
-                isSpace = false;
                 if (str[itStr] < 'a' || str[itStr] > 'z') {
                     isIncorrect = true;
                 }
             } else {
-                if (!isSpace && !isIncorrect) {
+                if (!isIncorrect) {
                     ++nbWords;
                 }
-                isSpace = true;
                 isIncorrect = false;
-                isCorrectFirst = false;
+                isFirst = true;
             }
         }
-
-        ++itStr;
     }
 
     return nbWords;
